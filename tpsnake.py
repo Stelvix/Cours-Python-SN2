@@ -1,7 +1,8 @@
 import turtle as t
-import random 
+import random
 import time
-#screen
+
+# screen
 screen = t.Screen()
 screen.bgcolor("white")
 screen.setup(600, 600)
@@ -35,7 +36,9 @@ textScore.penup()
 textScore.speed(0)
 textScore.goto(0, 250)
 textScore.hideturtle()
-textScore.write("Score: 0 High Score: 0", align="center", font=("verdana", 30, "normal"))
+textScore.write(
+    "Score: 0 High Score: 0", align="center", font=("verdana", 30, "normal")
+)
 
 looseScore = t.Turtle()
 looseScore.penup()
@@ -63,13 +66,20 @@ def move():
         x = snake.xcor()
         snake.setx(x + 20)
 
-#directions functions
+
+# directions functions
 def go_up():
     snake.direction = "up"
+
+
 def go_down():
     snake.direction = "down"
+
+
 def go_left():
     snake.direction = "left"
+
+
 def go_right():
     snake.direction = "right"
 
@@ -84,29 +94,37 @@ screen.onkeypress(go_right, "Right")
 
 
 while True:
-    screen.update() # mettre à jour le screen
-    move() # ici on appel la fonction move pour déplacer le serpene qu'on a crée
-    time.sleep(delay) # on appel la variable delay qu'on a créé en haut grace à l'import de time en faut
+    screen.update()  # mettre à jour le screen
+    move()  # ici on appel la fonction move pour déplacer le serpene qu'on a crée
+    time.sleep(
+        delay
+    )  # on appel la variable delay qu'on a créé en haut grace à l'import de time en faut
 
-# On s'assure que le serpent ne sort pas du screen
-    if snake.xcor() > 280 or snake.xcor() < -280 or snake.ycor() > 280 or snake.ycor() < -280:
+    # On s'assure que le serpent ne sort pas du screen
+    if (
+        snake.xcor() > 280
+        or snake.xcor() < -280
+        or snake.ycor() > 280
+        or snake.ycor() < -280
+    ):
         time.sleep(1)
         snake.goto(0, 0)
         snake.direction = "stop"
-        
 
-    # Réinitialiser les segments
+        # Réinitialiser les segments
         for seg in segment:
             seg.goto(1000, 1000)
         segment.clear()
 
-        score = 0 
+        score = 0
         textScore.clear()
-        textScore.write("Score: {}  High Score: {}".format(score, highScrore),
-                    align="center", font=("Arial", 20, "normal"))
+        textScore.write(
+            "Score: {}  High Score: {}".format(score, highScrore),
+            align="center",
+            font=("Arial", 20, "normal"),
+        )
         if score == 0:
-            looseScore.write("Perdu") 
-
+            looseScore.write("Perdu")
 
     # Manger la nourriture an faire grandire le serpent
     if snake.distance(food) < 20:
@@ -115,19 +133,23 @@ while True:
         food.penup()
         food.goto(x, y)
         food.pendown()
-# augmenter la taille du serpent
+        # augmenter la taille du serpent
         newSeg = t.Turtle()
         newSeg.shape("square")
         newSeg.color("grey")
         newSeg.penup()
         segment.append(newSeg)
-    
+
         score += 1
 
     if score > highScrore:
-            highScrore = score
-            textScore.clear()
-            textScore.write("Score: {}  High Score: {}".format(score, highScrore), align="center", font=("Arial", 30, "normal"))
+        highScrore = score
+        textScore.clear()
+        textScore.write(
+            "Score: {}  High Score: {}".format(score, highScrore),
+            align="center",
+            font=("Arial", 30, "normal"),
+        )
 
     for i in range(len(segment) - 1, 0, -1):
         x = segment[i - 1].xcor()
@@ -139,6 +161,3 @@ while True:
         x = snake.xcor()
         y = snake.ycor()
         segment[0].goto(x, y)
-
-    
-
