@@ -1,4 +1,3 @@
-
 import socket
 import os
 
@@ -16,13 +15,15 @@ age = 21
 
 ma_liste_de_course = ["couscous", "pomme", "orange"]
 
-ma_liste_de_course.append(["Bof", "patate","Bat"])
+ma_liste_de_course.append(["Bof", "patate", "Bat"])
 
 print(f"Ma nouvelle liste{ma_liste_de_course}")
 
- 
+
 def greet(name):
     return f"Hello, {name}!"
+
+
 print(greet("Steeven"))
 
 with open("tryFileHandling.txt", "w") as file:
